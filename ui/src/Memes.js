@@ -4,6 +4,7 @@ export default function Memes(props) {
     const [meme, setMeme] = useState(null);
 
     useEffect(() => {
+        if (props.licznik === 0) return;
         const str = "https://meme-api.com/gimme/ProgrammerHumor"
         fetch(str).then(res => res.json()).then(data => setMeme(data.url));
     }, [props.licznik]); //mamy nawias [ ] bo to lista, mogę dodać więcej warunków. Jak licznik wzrosnie to useEffect zareaguje
