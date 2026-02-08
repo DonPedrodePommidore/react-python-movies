@@ -11,7 +11,6 @@ export default function MovieListItem(props) {
     }
     return (
         <div>
-            <div>
                 <strong>{props.movie.title}</strong>
                 {' '}
                 <span>({props.movie.year})</span>
@@ -23,8 +22,6 @@ export default function MovieListItem(props) {
                 <a onClick={props.onDelete}>Delete movie</a>
                 {' '}
                 <a onClick = {handleAddActor}>Add actor</a>
-            </div>
-            {props.movie.description}
         </div>
     );
 }
