@@ -58,7 +58,7 @@ def update_movie(movie_id:int, params: dict[str, Any]):
     cursor = db.cursor()
     cursor.execute(
     "UPDATE movies SET title = ?, year = ?, actors = ?, director = ? WHERE id = ?",
-    (params['title'], params['year'], params['actors'], movie_id)
+    (params['title'], params['year'], params['actors'], params['director'], movie_id)
     )
     db.commit()
     if cursor.rowcount == 0:
