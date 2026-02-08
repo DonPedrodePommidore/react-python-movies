@@ -17,7 +17,18 @@ function App() {
         };
         fetchMovies();
     }, []);
+    async function handleEditMovie(movie){
+        const response = await fetch(`/movies/${movie.id}`, {
+            method:'PUT',
+            body: JSON.stringify(movie),
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (response.ok) {
+            setMovies(movies.map(m => m.id === movie.id ? movie : m));
+    }
 
+
+    }
     async function handleDeleteMovie(movie){
         const response = await fetch(`/movies/${movie.id}`, {
             method: 'DELETE',
@@ -49,6 +60,7 @@ function App() {
                 ? <p>No movies yet. Maybe add something?</p>
                 : <MoviesList movies={movies}
                               onDeleteMovie={handleDeleteMovie}
+                              onEditMovie={handleEditMovie}
                 />}
             {addingMovie
                 ? <MovieForm onMovieSubmit={handleAddMovie}

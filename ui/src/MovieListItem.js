@@ -1,4 +1,14 @@
+import {useState} from "react";
 export default function MovieListItem(props) {
+    const [addActor,setAddActor] = useState('');
+    function handleAddActor(){
+        const addActor = window.prompt("Podaj imię i nazwisko aktora:");
+        if (!addActor) return;
+        const currentActors = props.movie.actors || "";
+        const addingActors = currentActors ? currentActors + ", " + addActor : addActor;
+        const updateMovie = { ...props.movie, actors: addingActors}
+        props.onEdit(updateMovie)
+    }
     return (
         <div>
             <div>
@@ -10,7 +20,9 @@ export default function MovieListItem(props) {
                 {' '}
                 played by {props.movie.actors}
                 {' '}
-                <a onClick={props.onDelete}>Delete</a>
+                <a onClick={props.onDelete}>Delete movie</a>
+                {' '}
+                <a onClick = {handleAddActor}>Add actor</a>
             </div>
             {props.movie.description}
         </div>

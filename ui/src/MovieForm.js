@@ -19,7 +19,6 @@ export default function MovieForm(props) {
         setDirector('');
         setDescription('');
         setActor('');
-
     }
 
     return <form onSubmit={addMovie}>
