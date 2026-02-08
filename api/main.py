@@ -43,7 +43,8 @@ def get_single_movie(movie_id:int):  # put application's code here
 def add_movie(movie: Movie):
     db = sqlite3.connect('movies.db')
     cursor = db.cursor()
-    cursor.execute(f"INSERT INTO movies (title, year, actors) VALUES ('{movie.title}', '{movie.year}','{movie.actors}')")
+    cursor.execute("INSERT INTO movies (title, year, actors) VALUES (?, ?,?)",
+                   (movie.title, movie.year, movie.actors))
     db.commit()
     return {"message": f"Movie with id = {cursor.lastrowid} added successfully",
             "id":cursor.lastrowid}

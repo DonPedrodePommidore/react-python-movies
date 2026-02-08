@@ -5,7 +5,7 @@ export default function MovieListItem(props) {
         const addActor = window.prompt("Podaj imię i nazwisko aktora:");
         if (!addActor) return;
         const currentActors = props.movie.actors || "";
-        const addingActors = currentActors ? currentActors + ", " + addActor : addActor;
+        const addingActors = currentActors ? currentActors + ", " + addActor : addActor; //if są aktorzy w liście to dodaje po , else sam aktor
         const updateMovie = { ...props.movie, actors: addingActors}
         props.onEdit(updateMovie)
     }
